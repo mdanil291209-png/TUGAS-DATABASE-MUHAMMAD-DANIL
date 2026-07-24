@@ -1,0 +1,221 @@
+Microsoft Windows [Version 10.0.26200.8875]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\lenov>cd C;\xampp\mysql\bin
+The system cannot find the path specified.
+
+C:\Users\lenov>cd C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql-u root-p
+'mysql-u' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]>
+MariaDB [(none)]> create database sekolah;
+Query OK, 1 row affected (0.032 sec)
+
+MariaDB [(none)]> use sekolah;
+Database changed
+MariaDB [sekolah]> create table siswa (
+    -> id  int auto_incerment primary key,
+    -> nama varchar (100),
+    -> kelas varcher (20),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'primary key,
+nama varchar (100),
+kelas varcher (20),' at line 2
+MariaDB [sekolah]> create table siswa (
+    -> id int auto_increment primary key,
+    -> nama varchar (100)
+    -> kelas varchar (,
+    -> ,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'varchar (,
+,' at line 4
+MariaDB [sekolah]> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+MariaDB [sekolah]> create table siswa (
+    -> id int auto_increment primary key,
+    -> nama varchar (100),
+    -> kelas varchar (20),
+    -> alamat varchar (100)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5
+MariaDB [sekolah]> CREATE TABLE siswa (
+    ->   id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     nama VARCHAR(100),
+    ->     kelas VARCHAR(20),
+    ->    alamat VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.033 sec)
+
+MariaDB [sekolah]> insert into siswa (nama, kelas, alamat) values
+    -> ('lukman', 'xi rpl 2', 'medan'),
+    -> ('Budi', 'XI RPL 1', 'Binjai'),
+    -> ('Citra', 'XI RPL 2', 'Lubuk Pakam'),
+    -> ('Doni', 'XI RPL 2', 'Medan'),
+    -> ('Eka', 'XI RPL 1', 'Tebing Tinggi');
+Query OK, 5 rows affected (0.024 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [sekolah]> select * from siswa;
++----+--------+----------+---------------+
+| id | nama   | kelas    | alamat        |
++----+--------+----------+---------------+
+|  1 | lukman | xi rpl 2 | medan         |
+|  2 | Budi   | XI RPL 1 | Binjai        |
+|  3 | Citra  | XI RPL 2 | Lubuk Pakam   |
+|  4 | Doni   | XI RPL 2 | Medan         |
+|  5 | Eka    | XI RPL 1 | Tebing Tinggi |
++----+--------+----------+---------------+
+5 rows in set (0.007 sec)
+
+MariaDB [sekolah]> select nama, kelas from siswa;
++--------+----------+
+| nama   | kelas    |
++--------+----------+
+| lukman | xi rpl 2 |
+| Budi   | XI RPL 1 |
+| Citra  | XI RPL 2 |
+| Doni   | XI RPL 2 |
+| Eka    | XI RPL 1 |
++--------+----------+
+5 rows in set (0.001 sec)
+
+MariaDB [sekolah]> select * from siswa
+    -> where alamat = 'medan';
++----+--------+----------+--------+
+| id | nama   | kelas    | alamat |
++----+--------+----------+--------+
+|  1 | lukman | xi rpl 2 | medan  |
+|  4 | Doni   | XI RPL 2 | Medan  |
++----+--------+----------+--------+
+2 rows in set (0.031 sec)
+
+MariaDB [sekolah]> update siswa
+    -> set alamat = 'pematangsiantar'
+    -> whare id = 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'whare id = 1' at line 3
+MariaDB [sekolah]> update siswa
+    -> set alamat = 'pematangsiantar'
+    -> where alamat = 'medan';
+Query OK, 2 rows affected (0.009 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+MariaDB [sekolah]> update siswa
+    -> set alamat = 'pematangsiantar'
+    -> where id = 1;
+Query OK, 0 rows affected (0.004 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+MariaDB [sekolah]> select * from siswa;
++----+--------+----------+-----------------+
+| id | nama   | kelas    | alamat          |
++----+--------+----------+-----------------+
+|  1 | lukman | xi rpl 2 | pematangsiantar |
+|  2 | Budi   | XI RPL 1 | Binjai          |
+|  3 | Citra  | XI RPL 2 | Lubuk Pakam     |
+|  4 | Doni   | XI RPL 2 | pematangsiantar |
+|  5 | Eka    | XI RPL 1 | Tebing Tinggi   |
++----+--------+----------+-----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [sekolah]> delete from siswa
+    -> where id = 5;
+Query OK, 1 row affected (0.015 sec)
+
+MariaDB [sekolah]> select * from siswa
+    -> ;
++----+--------+----------+-----------------+
+| id | nama   | kelas    | alamat          |
++----+--------+----------+-----------------+
+|  1 | lukman | xi rpl 2 | pematangsiantar |
+|  2 | Budi   | XI RPL 1 | Binjai          |
+|  3 | Citra  | XI RPL 2 | Lubuk Pakam     |
+|  4 | Doni   | XI RPL 2 | pematangsiantar |
++----+--------+----------+-----------------+
+4 rows in set (0.001 sec)
+
+MariaDB [sekolah]> select * from siswa
+    -> order by name asc;
+ERROR 1054 (42S22): Unknown column 'name' in 'order clause'
+MariaDB [sekolah]> select * from siswa
+    -> order by nama asc;
++----+--------+----------+-----------------+
+| id | nama   | kelas    | alamat          |
++----+--------+----------+-----------------+
+|  2 | Budi   | XI RPL 1 | Binjai          |
+|  3 | Citra  | XI RPL 2 | Lubuk Pakam     |
+|  4 | Doni   | XI RPL 2 | pematangsiantar |
+|  1 | lukman | xi rpl 2 | pematangsiantar |
++----+--------+----------+-----------------+
+4 rows in set (0.013 sec)
+
+MariaDB [sekolah]> select count(*) as jumlah_siswa
+    -> from siswa;
++--------------+
+| jumlah_siswa |
++--------------+
+|            4 |
++--------------+
+1 row in set (0.030 sec)
+
+MariaDB [sekolah]> desc siswa;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama   | varchar(100) | YES  |     | NULL    |                |
+| kelas  | varchar(20)  | YES  |     | NULL    |                |
+| alamat | varchar(100) | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.015 sec)
+
+MariaDB [sekolah]> show tables;
++-------------------+
+| Tables_in_sekolah |
++-------------------+
+| siswa             |
++-------------------+
+1 row in set (0.004 sec)
+
+MariaDB [sekolah]> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'database' at line 1
+MariaDB [sekolah]> show databases;
++---------------------+
+| Database            |
++---------------------+
+| data_siswa          |
+| db_aplikasi_minuman |
+| dokter              |
+| information_schema  |
+| mysql               |
+| parkirrr            |
+| pendaftaran_siswa   |
+| pendaftaran_siswa`  |
+| pendaftaran_siswaa  |
+| pengaduan_sarana    |
+| performance_schema  |
+| perpustakaan        |
+| phpmyadmin          |
+| sek                 |
+| sekolah             |
+| sekolah_pengaduan   |
+| test                |
++---------------------+
+17 rows in set (0.017 sec)
+
+MariaDB [sekolah]> exit;
+Bye
+
+C:\xampp\mysql\bin>
